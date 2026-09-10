@@ -3,20 +3,19 @@ import numpy as np
 
 def driver():
 # test functions
-    f1=lambda x: x 
+    f1=lambda x: 1+0.5*np.sin(x)
     Nmax = 100
     tol = 1e-6
     # test f1 '''
     x0 = 0.0
-    [xstar,ier] = fixedpt(f1,x0,tol,Nmax)
-    print('the approximate fixed point is:',xstar)
-    print('f1(xstar):',f1(xstar))
-    print('Error message reads:',ier)
+    print(fixedptList(f1,x0,tol,Nmax))
+    #print('the root finding iterations are' , {res})
     #test f2 '''
-    x0 = 0.0
+
    
 # define routines
-def fixedpt(f,x0,tol,Nmax):
+def fixedptList(f,x0,tol,Nmax):
+    lis=[x0]
     ''' x0 = initial guess'''
     ''' Nmax = max number of iterations'''
     ''' tol = stopping tolerance'''
@@ -24,11 +23,16 @@ def fixedpt(f,x0,tol,Nmax):
     while (count <Nmax):
         count = count +1
         x1 = f(x0)
+        lis.append(x1)
         if (abs(x1-x0) <tol):
             xstar = x1
             ier = 0
-            return [xstar,ier]
-    x0 = x1
+            return np.array(lis)
+        x0 = x1
+
     xstar = x1
     ier = 1
-    return [xstar, ier]
+    return np.array(lis)
+
+
+driver()
