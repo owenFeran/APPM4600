@@ -16,7 +16,7 @@ mat1=np.array([[(1-10**10)*a*10**(-5)+10**10*b*10**(-5)],[(1+10**10)*a*10**(-5)-
 normmat1=np.linalg.norm(mat1)
 print(normmat1/np.sqrt(2))
 #problem 6
-x=np.linspace(-20,20)
+x=np.linspace(-20,20,150)
 f=x-4*np.sin(2*x)-3
 
 plt.plot(x,f)
@@ -46,8 +46,8 @@ accFunc= lambda x:abs(-2*np.cos(2*x)+5/4 -1)*10**(-10)
 
 def fixedPtHw(f,Nmax,x0,accFunc):
     count=0
+    x1=f(x0)
     while abs(x1-x0) > accFunc(x1):
-        x1=f(x0)
         while count<=Nmax:
             x0=x1
             x1=f(x0)
@@ -56,5 +56,5 @@ def fixedPtHw(f,Nmax,x0,accFunc):
     print('Error, reached max number of iterations')
     return
     
-res=fixedPtHw(f5,100,3.1,accFunc)
+res=fixedPtHw(f5,100,3,accFunc)
 print(res)

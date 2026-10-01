@@ -63,10 +63,6 @@ def convspeed(iterations,speed):
         print('Uh oh, pick quadratic or linear speed.')
         return
     
-    
-
-
-
 
 
 driver()
